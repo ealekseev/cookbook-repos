@@ -27,7 +27,7 @@ node['repos'].each do |repo|
       end
       Array(repo['preferences']).each do |pref|
         Array(pref['packages']).each do |pkg|
-          apt_preference "#{repo['name']}-#{pkg}" do
+          apt_preference "#{repo['name']}-#{pkg.gsub('.','_')}" do
             package_name pkg
             pin "release a=#{repo["name"]}"
             pin_priority pref['pin_priority']
